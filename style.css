@@ -39,9 +39,8 @@ body{
 
 .stats {
     position: fixed;
-    right: 0;
-    height: 277px;
-    width: 806px;
+    height: 436px;
+    width: 430px;
 }
 
 .numPan .nums > .r div{
