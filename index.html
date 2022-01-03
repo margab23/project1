@@ -25,7 +25,7 @@
 				<p>Cieľom je zistiť ktoré číslice sú nerozpoznateľné od číslic písaných ľudskou rukou.<br>
 				- po odštartovaní testu sa Vám premietne obrázok číslice a klávesnica s číslicami a dvomi špeciálnymi znakmi <b> * % </b><br>
 				- na klávesnici stlačíte tlačidlo číslice ak s istotou považujete číslicu za písanú ľudskou rukou, alebo <br>
-				<b>*</b> - nie je to ľudskou rukou písaná číslica (neviem sa rozhodnúť, nie je to číslica) <br>
+				<b>*</b> - nie je to ľudskou rukou písaná číslica (neviem sa rozhodnúť) <br>
 				<b>%</b> - je to rukou písané, ale môže to byť viacero číslic </p>
 				<p>Ak sa neviete rozhodnúť, stlačte	<b>*</b></p>
             </div>
@@ -38,6 +38,7 @@
 		<form class="disp" name="google-sheet">
 			<input id="id1" name="answer" type="text">
 			<input id="id2" name="imageName" type="text">
+			<input id="id3" name="id" type="text">
 		</form>
 		<div class="nums">
 			<div class="flex r r1">
@@ -65,9 +66,14 @@
 	</div>
 
 	<div class="pokyny">
-		<p><b>*</b> - nie je to ľudskou rukou písaná číslica (neviem sa rozhodnúť, nie je to číslica)</p>
+		<p><b>*</b> - nie je to ľudskou rukou písaná číslica (neviem sa rozhodnúť)</p>
 		<p><b>%</b> - je to rukou písané, ale môže to byť viacero číslic</p>
 		<button type="button" class="btn btn-outline-dark" onclick="show_modal()">Pokyny</button>
+	</div>
+
+	<div class="stats">
+		<h4 id="clicks">Počítadlo: 0</h4>
+		<p id="user"></p>
 	</div>
 
 	<script>
@@ -78,10 +84,23 @@
 
 		var btn=document.querySelectorAll(".r > div");
 		var inp1=document.getElementById('id1');
+
+		//Counter
+		var counter = document.getElementById("clicks"),
+  		count = 0;
+
+  		//Identifikator pouzivatela
+  		var userId=document.getElementById('user');
+  		var userIdForm=document.getElementById('id3');
+  		var randomId = Math.floor(Math.random() * 1000000) + 1;
+  		userId.innerHTML = "ID: " + randomId;
+  		userIdForm.value = randomId;
 		
 		btn.forEach(val=>{
 			val.addEventListener("click", ()=>{
 				inp1.value=val.innerText;
+				count += 1;
+				counter.innerHTML = "Počítadlo: " + count;
 
 		    	fetch(scriptURL, { method: 'POST', body: new FormData(form)})
 		      	.then(response => console.log('Success!', response))
@@ -140,7 +159,6 @@
 		const pomName2 = pomName1.replace(/^.*[\\\/]/, '');
 		const name = pomName2.split('.')[0];
 		imageValue = name;
-		console.log(imageValue);
 		var inp2=document.getElementById('id2');
 		inp2.value = imageValue;
 
