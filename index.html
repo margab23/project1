@@ -74,6 +74,8 @@
 	<div class="stats">
 		<h4 id="clicks">Počítadlo: 0</h4>
 		<p id="user"></p>
+		<button onclick="window.location.href='https://vzdelavanie.uniza.sk/moodle/pluginfile.php/271543/mod_resource/content/3/P13_2021_22.pdf';"
+		 class="btn btn-outline-dark">O čo ide?</button>
 	</div>
 
 	<script>
@@ -90,9 +92,11 @@
   		count = 0;
 
   		//Identifikator pouzivatela
+  		var min = 1000000000;
+		var max = 9999999999;
   		var userId=document.getElementById('user');
   		var userIdForm=document.getElementById('id3');
-  		var randomId = Math.floor(Math.random() * 1000000) + 1;
+  		var randomId = Math.floor(Math.random() * min) + max;
   		userId.innerHTML = "ID: " + randomId;
   		userIdForm.value = randomId;
 		
