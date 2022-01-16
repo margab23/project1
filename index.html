@@ -146,9 +146,9 @@
 		  
 		var newImage = getRandomInt(0, preBuffer.length - 1);
 		 */
-		var randomNumber = Math.floor(Math.random() * 3190) + 1; 
+		var randomNumber = Math.floor(Math.random() * (3790 - 3191)) + 3191;
 		var newImage = new Image();
-		newImage.src = "images/" + randomNumber + ".png";
+		newImage.src = "imagesV2/" + randomNumber + ".png";
 
 		// remove the previous images
 		var images = document.getElementsByTagName('img');
